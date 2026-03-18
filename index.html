@@ -116,7 +116,8 @@
       align-items: center;
     }
 
-    input[type="number"] {
+    input[type="number"],
+    input[type="text"] {
       width: 100%;
       background: var(--bg);
       border: 1px solid var(--border);
@@ -125,10 +126,14 @@
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 400;
-      padding: 11px 42px 11px 14px;
+      padding: 11px 14px;
       outline: none;
       transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
       -moz-appearance: textfield;
+    }
+
+    input[type="number"] {
+      padding: 11px 42px 11px 14px;
     }
 
     input[type="number"]::-webkit-inner-spin-button,
@@ -367,6 +372,25 @@
     <p class="header-desc">Calcula o valor estimado com base na area bruta privativa, area dependente ponderada e valor de mercado por m2. Inclui calculo de comissao com IVA.</p>
   </header>
 
+  <!-- Card 0: Identificacao -->
+  <div class="section">
+    <div class="section-label">Identificacao</div>
+    <div class="field-row">
+      <div class="field">
+        <label>Nome do Cliente</label>
+        <div class="input-wrap">
+          <input type="text" id="nomeCliente" placeholder="Nome completo" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Consultor Imobiliario</label>
+        <div class="input-wrap">
+          <input type="text" id="nomeConsultor" placeholder="Nome do consultor" />
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Card 1: Areas -->
   <div class="section">
     <div class="section-label">Areas da caderneta predial</div>
@@ -517,6 +541,8 @@
   let lastResult = null;
 
   function calculate() {
+    const nomeCliente   = document.getElementById('nomeCliente').value.trim();
+    const nomeConsultor = document.getElementById('nomeConsultor').value.trim();
     const privativa   = parseFloat(document.getElementById('privativa').value);
     const dependente  = parseFloat(document.getElementById('dependente').value);
     const pricePerSqm = parseFloat(document.getElementById('pricePerSqm').value);
@@ -542,7 +568,7 @@
     const comTotal   = comBase + comIva;
     const liquido    = valor - comTotal;
 
-    lastResult = { privativa, dep, depPond, totalPond, pricePerSqm, valor, hasComis, comissaoPct, comBase, comIva, comTotal, liquido };
+    lastResult = { nomeCliente, nomeConsultor, privativa, dep, depPond, totalPond, pricePerSqm, valor, hasComis, comissaoPct, comBase, comIva, comTotal, liquido };
 
     // Fill tiles
     document.getElementById('r-priv').innerHTML       = fmt(privativa) + '<span class="u">m²</span>';
@@ -584,7 +610,7 @@
   }
 
   function resetCalc() {
-    ['privativa', 'dependente', 'pricePerSqm', 'comissao'].forEach(id => {
+    ['nomeCliente', 'nomeConsultor', 'privativa', 'dependente', 'pricePerSqm', 'comissao'].forEach(id => {
       document.getElementById(id).value = '';
     });
     const wrap = document.getElementById('resultsWrap');
@@ -621,6 +647,30 @@
     doc.text('Documento indicativo. Nao substitui avaliacao certificada por perito qualificado.', mg, 38);
 
     let y = 56;
+
+    // Bloco Cliente / Consultor
+    if (r.nomeCliente || r.nomeConsultor) {
+      doc.setFillColor(249, 248, 246);
+      doc.rect(mg, y, W - mg * 2, 10, 'F');
+      doc.setFontSize(9);
+      if (r.nomeCliente) {
+        doc.setTextColor(120, 118, 114);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Cliente:', mg + 3, y + 6.5);
+        doc.setTextColor(26, 25, 22);
+        doc.setFont('helvetica', 'bold');
+        doc.text(r.nomeCliente, mg + 20, y + 6.5);
+      }
+      if (r.nomeConsultor) {
+        doc.setTextColor(120, 118, 114);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Consultor:', W / 2, y + 6.5);
+        doc.setTextColor(26, 25, 22);
+        doc.setFont('helvetica', 'bold');
+        doc.text(r.nomeConsultor, W / 2 + 24, y + 6.5);
+      }
+      y += 16;
+    }
 
     // Section helper
     function sTitle(label, yy) {
