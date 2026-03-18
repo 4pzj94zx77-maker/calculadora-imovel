@@ -12,20 +12,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #F4F4F5;
-      --white:      #FFFFFF;
-      --border:     #E4E4E7;
-      --border2:    #D4D4D8;
-      --text:       #09090B;
-      --muted:      #71717A;
-      --subtle:     #A1A1AA;
-      --accent:     #2563EB;
-      --accent-lt:  #EFF6FF;
-      --accent2:    #1D4ED8;
-      --warn:       #C2410C;
-      --warn-lt:    #FFF7ED;
-      --radius:     14px;
-      --shadow:     0 1px 2px rgba(0,0,0,0.03), 0 6px 28px rgba(0,0,0,0.06);
+      --bg:         #f7f6f3;
+      --white:      #ffffff;
+      --border:     #e4e2dc;
+      --border2:    #d0cdc5;
+      --text:       #1a1916;
+      --muted:      #8a8680;
+      --subtle:     #b5b2aa;
+      --accent:     #2c5f4a;
+      --accent-lt:  #e8f0ec;
+      --accent2:    #4a8c6f;
+      --warn:       #c05c3a;
+      --warn-lt:    #fdf1ed;
+      --radius:     10px;
+      --shadow:     0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
     }
 
     body {
@@ -144,7 +144,7 @@
     input:focus {
       border-color: var(--accent);
       background: var(--white);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 0 0 3px rgba(74, 140, 111, 0.12);
     }
 
     input::placeholder { color: var(--subtle); }
@@ -164,7 +164,7 @@
       align-items: flex-start;
       gap: 9px;
       background: var(--accent-lt);
-      border: 1px solid rgba(37, 99, 235, 0.14);
+      border: 1px solid rgba(44, 95, 74, 0.18);
       border-radius: 10px;
       padding: 11px 14px;
       margin-bottom: 22px;
@@ -189,7 +189,7 @@
     .iva-text small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 2px; }
     .iva-badge {
       background: var(--accent-lt);
-      border: 1px solid rgba(37, 99, 235, 0.18);
+      border: 1px solid rgba(44, 95, 74, 0.2);
       color: var(--accent);
       font-size: 12px;
       font-weight: 600;
@@ -216,7 +216,7 @@
 
     .btn-calc:hover {
       background: var(--accent2);
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 4px 20px rgba(44, 95, 74, 0.28);
     }
 
     .btn-calc:active { transform: scale(0.99); }
@@ -225,7 +225,7 @@
     .error-box {
       display: none;
       background: var(--warn-lt);
-      border: 1px solid rgba(194, 65, 12, 0.2);
+      border: 1px solid rgba(192, 92, 58, 0.25);
       border-radius: 9px;
       padding: 12px 14px;
       font-size: 13px;
@@ -260,7 +260,7 @@
 
     .tile.wide { grid-column: 1 / -1; }
     .tile.green { background: var(--accent); border-color: var(--accent); }
-    .tile.orange { background: var(--warn-lt); border-color: rgba(194, 65, 12, 0.18); }
+    .tile.orange { background: var(--warn-lt); border-color: rgba(192, 92, 58, 0.2); }
 
     .tile-label {
       font-size: 10px;
@@ -641,7 +641,7 @@
     const lineH = 8;
 
     // --- Header ---
-    doc.setFillColor(37, 99, 235);
+    doc.setFillColor(44, 95, 74);
     doc.rect(0, 0, W, 44, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(19);
@@ -649,9 +649,9 @@
     doc.text('Calculadora de Valor de Imóvel', mg, 19);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(186, 210, 255);
+    doc.setTextColor(180, 220, 200);
     doc.text('Emitido em ' + today, mg, 29);
-    doc.setTextColor(147, 197, 253);
+    doc.setTextColor(130, 185, 160);
     doc.setFontSize(8.5);
     doc.text('Documento indicativo. Não substitui avaliação certificada por perito qualificado.', mg, 38);
 
@@ -696,9 +696,9 @@
 
     // Section helper
     function sTitle(label, yy) {
-      doc.setFillColor(239, 246, 255);
+      doc.setFillColor(232, 240, 236);
       doc.rect(mg, yy, W - mg * 2, 9, 'F');
-      doc.setTextColor(37, 99, 235);
+      doc.setTextColor(44, 95, 74);
       doc.setFontSize(8.5);
       doc.setFont('helvetica', 'bold');
       doc.text(label, mg + 3, yy + 6);
@@ -721,7 +721,7 @@
     }
 
     function featRow(label, value, yy, color) {
-      const [r2, g, b] = color || [37, 99, 235];
+      const [r2, g, b] = color || [44, 95, 74];
       doc.setFillColor(r2, g, b);
       doc.rect(mg, yy, W - mg * 2, lineH + 3, 'F');
       doc.setTextColor(255, 255, 255);
@@ -744,7 +744,7 @@
     y = sTitle('VALOR DE MERCADO', y);
     y = dataRow('Valor por metro quadrado', fmt(r.pricePerSqm, 0) + ' EUR/m²', y, false);
     y += 3;
-    y = featRow('VALOR ESTIMADO DO IMÓVEL', fmtEur(r.valor), y, [37, 99, 235]);
+    y = featRow('VALOR ESTIMADO DO IMÓVEL', fmtEur(r.valor), y, [44, 95, 74]);
     y += 8;
 
     // COMISSAO
@@ -766,7 +766,7 @@
       y += lineH + 8;
 
       y = sTitle('VALOR LÍQUIDO PARA O PROPRIETÁRIO', y);
-      y = featRow(fmtEur(r.valor) + '  -  ' + fmtEur(r.comTotal), fmtEur(r.liquido), y, [37, 99, 235]);
+      y = featRow(fmtEur(r.valor) + '  -  ' + fmtEur(r.comTotal), fmtEur(r.liquido), y, [44, 95, 74]);
     }
 
     // Footer line
