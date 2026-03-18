@@ -286,7 +286,7 @@
     .tile-value .u { font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 400; color: var(--muted); margin-left: 3px; }
     .tile.green .tile-value .u { color: rgba(255,255,255,0.5); }
 
-    /* Calculo detalhado */
+    /* Cálculo detalhado */
     .formula-block {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -369,12 +369,12 @@
   <header class="header">
 
     <h1>Calculadora de<br>Valor de Imóvel</h1>
-    <p class="header-desc">Calcula o valor estimado com base na area bruta privativa, area dependente ponderada e valor de mercado por m2. Inclui calculo de comissao com IVA.</p>
+    <p class="header-desc">Calcula o valor etmado com base na área bruta privativa, área dependente ponderada e valor de mercado por m², Inclui cálculo de comissão com IVA.</p>
   </header>
 
-  <!-- Card 0: Identificacao -->
+  <!-- Card 0: Identificação -->
   <div class="section">
-    <div class="section-label">Identificacao</div>
+    <div class="section-label">Identificação</div>
     <div class="field-row">
       <div class="field">
         <label>Nome do Cliente</label>
@@ -383,7 +383,7 @@
         </div>
       </div>
       <div class="field">
-        <label>Consultor Imobiliario</label>
+        <label>Consultor Imobiliário</label>
         <div class="input-wrap">
           <input type="text" id="nomeConsultor" placeholder="Nome do consultor" />
         </div>
@@ -399,27 +399,27 @@
 
   <!-- Card 1: Areas -->
   <div class="section">
-    <div class="section-label">Areas da caderneta predial</div>
+    <div class="section-label">Áreas da caderneta predial</div>
     <div class="info-pill">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#2c5f4a" stroke-width="1.4"/><path d="M8 7v4.5M8 5.5v.3" stroke="#2c5f4a" stroke-width="1.5" stroke-linecap="round"/></svg>
-      A area dependente e ponderada a 25% do valor da area privativa, conforme criterio do Codigo do IMI e avaliacao bancaria.
+      A área dependente é ponderada a 25% do valor da área privativa, conforme critério do Código do IMI e avaliação bancária.
     </div>
     <div class="field-row">
       <div class="field">
-        <label>Area Bruta Privativa</label>
+        <label>Área Bruta Privativa</label>
         <div class="input-wrap">
           <input type="number" id="privativa" placeholder="0" min="0" step="0.01" />
           <span class="unit">m²</span>
         </div>
-        <div class="hint">Habitacao, cozinha, casas de banho</div>
+        <div class="hint">Habitação, cozinha, casas de banho</div>
       </div>
       <div class="field">
-        <label>Area Bruta Dependente</label>
+        <label>Área Bruta Dependente</label>
         <div class="input-wrap">
           <input type="number" id="dependente" placeholder="0" min="0" step="0.01" />
           <span class="unit">m²</span>
         </div>
-        <div class="hint">Varandas, garagem, arrecadacao</div>
+        <div class="hint">Varandas, garagem, arrecadação</div>
       </div>
     </div>
   </div>
@@ -433,24 +433,24 @@
         <input type="number" id="pricePerSqm" placeholder="0" min="0" step="1" />
         <span class="unit">€/m²</span>
       </div>
-      <div class="hint">Referencia de mercado para este tipo de imóvel e zona geografica</div>
+      <div class="hint">Referência de mercado para este tipo de imóvel e zona geográfica</div>
     </div>
   </div>
 
   <!-- Card 3: Comissao -->
   <div class="section">
-    <div class="section-label">Comissao imobiliaria</div>
+    <div class="section-label">Comissão imobiliária</div>
     <div class="field">
-      <label>Percentagem de comissao (sem IVA)</label>
+      <label>Percentagem de comissão (sem IVA)</label>
       <div class="input-wrap">
         <input type="number" id="comissao" placeholder="5" min="0" max="100" step="0.1" />
         <span class="unit">%</span>
       </div>
-      <div class="hint">Percentagem acordada com o proprietario, antes de IVA.</div>
+      <div class="hint">Percentagem acordada com o proprietário, antes de IVA.</div>
     </div>
     <div class="iva-row">
       <div class="iva-text">
-        IVA aplicavel sobre a comissao
+        IVA aplicável sobre a comissão
         <small>Regime normal, Portugal Continental</small>
       </div>
       <div class="iva-badge">23 %</div>
@@ -458,7 +458,7 @@
   </div>
 
   <button class="btn-calc" onclick="calculate()">Calcular</button>
-  <div class="error-box" id="errorBox">Preenche a area privativa, o valor por m2 e a percentagem de comissao antes de calcular. Esses tres campos sao obrigatorios.</div>
+  <div class="error-box" id="errorBox">Preenche a área privativa, o valor por m² e a percentagem de comissão antes de calcular. Esses tês campos são obrigatórios.</div>
 
   <!-- RESULTS -->
   <div class="results-wrap" id="resultsWrap" style="margin-top:10px;">
@@ -472,11 +472,11 @@
           <div class="tile-value" id="r-priv">--<span class="u">m²</span></div>
         </div>
         <div class="tile">
-          <div class="tile-label">Area Dependente Ponderada</div>
+          <div class="tile-label">Área Dependente Ponderada</div>
           <div class="tile-value" id="r-dep-pond">--<span class="u">m²</span></div>
         </div>
         <div class="tile">
-          <div class="tile-label">Area Total Ponderada</div>
+          <div class="tile-label">Área Total Ponderada</div>
           <div class="tile-value" id="r-total-area">--<span class="u">m²</span></div>
         </div>
         <div class="tile">
@@ -493,7 +493,7 @@
       <div id="comissaoBlock" style="display:none;">
         <div class="tiles" style="margin-top:0;">
           <div class="tile">
-            <div class="tile-label">Comissao sem IVA</div>
+            <div class="tile-label">Comissão sem IVA</div>
             <div class="tile-value" id="r-com-base">--</div>
           </div>
           <div class="tile">
@@ -501,11 +501,11 @@
             <div class="tile-value" id="r-com-iva">--</div>
           </div>
           <div class="tile wide orange">
-            <div class="tile-label">Total comissao com IVA</div>
+            <div class="tile-label">Total comissão com IVA</div>
             <div class="tile-value" id="r-com-total">--</div>
           </div>
           <div class="tile wide">
-            <div class="tile-label">Valor liquido para o proprietario</div>
+            <div class="tile-label">Valor líquido para o proprietário</div>
             <div class="tile-value" id="r-liquido">--</div>
           </div>
         </div>
@@ -513,7 +513,7 @@
 
       <!-- Formula -->
       <div class="formula-block">
-        <div class="formula-title">Calculo detalhado</div>
+        <div class="formula-title">Cálculo detalhado</div>
         <div class="formula-text" id="formulaText">--</div>
       </div>
 
@@ -532,7 +532,7 @@
   </div>
 
   <footer class="footer">
-    <small>Valor indicativo. Nao substitui avaliacao certificada por perito qualificado.</small>
+    <small>Valor indicativo. Não substitui avaliação certificada por perito qualificado.</small>
   </footer>
 </div>
 
@@ -602,9 +602,9 @@
     fl += '<strong>' + fmt(totalPond) + ' m²</strong> &times; <strong>' + fmt(pricePerSqm, 0) + ' €/m²</strong> = <strong>' + fmtEur(valor) + '</strong>';
     if (hasComis) {
       fl += '<div class="sep"></div>';
-      fl += '<strong>' + fmtEur(valor) + '</strong> &times; <strong>' + fmt(comissaoPct, 1) + '%</strong> = ' + fmtEur(comBase) + ' + IVA 23% (' + fmtEur(comIva) + ') = <strong>' + fmtEur(comTotal) + ' comissao total</strong>';
+      fl += '<strong>' + fmtEur(valor) + '</strong> &times; <strong>' + fmt(comissaoPct, 1) + '%</strong> = ' + fmtEur(comBase) + ' + IVA 23% (' + fmtEur(comIva) + ') = <strong>' + fmtEur(comTotal) + ' comissão total</strong>';
       fl += '<div class="sep"></div>';
-      fl += 'Valor liquido: <strong>' + fmtEur(valor) + '</strong> &minus; <strong>' + fmtEur(comTotal) + '</strong> = <strong>' + fmtEur(liquido) + '</strong>';
+      fl += 'Valor líquido: <strong>' + fmtEur(valor) + '</strong> &minus; <strong>' + fmtEur(comTotal) + '</strong> = <strong>' + fmtEur(liquido) + '</strong>';
     }
     document.getElementById('formulaText').innerHTML = fl;
 
@@ -651,7 +651,7 @@
     doc.text('Emitido em ' + today, mg, 29);
     doc.setTextColor(130, 185, 160);
     doc.setFontSize(8.5);
-    doc.text('Documento indicativo. Nao substitui avaliacao certificada por perito qualificado.', mg, 38);
+    doc.text('Documento indicativo. Não substitui avaliação certificada por perito qualificado.', mg, 38);
 
     let y = 56;
 
@@ -731,26 +731,26 @@
     }
 
     // AREAS
-    y = sTitle('AREAS', y);
-    y = dataRow('Area Bruta Privativa', fmt(r.privativa) + ' m2', y, false);
-    y = dataRow('Area Bruta Dependente (real)', fmt(r.dep) + ' m2', y, true);
-    y = dataRow('Area Dependente Ponderada (x 0,25)', fmt(r.depPond) + ' m2', y, false);
-    y = dataRow('Area Total Ponderada', fmt(r.totalPond) + ' m2', y, true);
+    y = sTitle('ÁREAS', y);
+    y = dataRow('Área Bruta Privativa', fmt(r.privativa) + ' m²', y, false);
+    y = dataRow('Área Bruta Dependente (real)', fmt(r.dep) + ' m²', y, true);
+    y = dataRow('Área Dependente Ponderada (x 0,25)', fmt(r.depPond) + ' m²', y, false);
+    y = dataRow('Área Total Ponderada', fmt(r.totalPond) + ' m²', y, true);
     y += 6;
 
     // VALOR
     y = sTitle('VALOR DE MERCADO', y);
-    y = dataRow('Valor por metro quadrado', fmt(r.pricePerSqm, 0) + ' EUR/m2', y, false);
+    y = dataRow('Valor por metro quadrado', fmt(r.pricePerSqm, 0) + ' EUR/m²', y, false);
     y += 3;
     y = featRow('VALOR ESTIMADO DO IMÓVEL', fmtEur(r.valor), y, [44, 95, 74]);
     y += 8;
 
     // COMISSAO
     if (r.hasComis) {
-      y = sTitle('COMISSAO IMOBILIARIA', y);
-      y = dataRow('Percentagem de comissao', fmt(r.comissaoPct, 1) + ' %', y, false);
-      y = dataRow('Valor de comissao (sem IVA)', fmtEur(r.comBase), y, true);
-      y = dataRow('IVA sobre a comissao (23%)', fmtEur(r.comIva), y, false);
+      y = sTitle('COMISSÃO IMOBILIÁRIA', y);
+      y = dataRow('Percentagem de comissão', fmt(r.comissaoPct, 1) + ' %', y, false);
+      y = dataRow('Valor de comissão (sem IVA)', fmtEur(r.comBase), y, true);
+      y = dataRow('IVA sobre a comissão (23%)', fmtEur(r.comIva), y, false);
       y += 3;
 
       // Orange row
@@ -759,11 +759,11 @@
       doc.setTextColor(192, 92, 58);
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      doc.text('Total comissao com IVA', mg + 3, y + 7);
+      doc.text('Total comissão com IVA', mg + 3, y + 7);
       doc.text(fmtEur(r.comTotal), W - mg - 3, y + 7, { align: 'right' });
       y += lineH + 8;
 
-      y = sTitle('VALOR LIQUIDO PARA O PROPRIETARIO', y);
+      y = sTitle('VALOR LÍQUIDO PARA O PROPRIETÁRIO', y);
       y = featRow(fmtEur(r.valor) + '  -  ' + fmtEur(r.comTotal), fmtEur(r.liquido), y, [44, 95, 74]);
     }
 
