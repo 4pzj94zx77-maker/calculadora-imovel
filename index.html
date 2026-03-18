@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora de Valor de Imovel</title>
+  <title>Calculadora de Valor de Imóvel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -368,7 +368,7 @@
 
   <header class="header">
 
-    <h1>Calculadora de<br>Valor de Imovel</h1>
+    <h1>Calculadora de<br>Valor de Imóvel</h1>
     <p class="header-desc">Calcula o valor estimado com base na area bruta privativa, area dependente ponderada e valor de mercado por m2. Inclui calculo de comissao com IVA.</p>
   </header>
 
@@ -390,7 +390,7 @@
       </div>
     </div>
     <div class="field" style="margin-top:14px;">
-      <label>Morada do Imovel</label>
+      <label>Morada do Imóvel</label>
       <div class="input-wrap">
         <input type="text" id="moradaImovel" placeholder="Rua, numero, freguesia, concelho" />
       </div>
@@ -433,7 +433,7 @@
         <input type="number" id="pricePerSqm" placeholder="0" min="0" step="1" />
         <span class="unit">€/m²</span>
       </div>
-      <div class="hint">Referencia de mercado para este tipo de imovel e zona geografica</div>
+      <div class="hint">Referencia de mercado para este tipo de imóvel e zona geografica</div>
     </div>
   </div>
 
@@ -484,7 +484,7 @@
           <div class="tile-value" id="r-pm">--<span class="u">€</span></div>
         </div>
         <div class="tile wide green">
-          <div class="tile-label">Valor Estimado do Imovel</div>
+          <div class="tile-label">Valor Estimado do Imóvel</div>
           <div class="tile-value" id="r-valor">--</div>
         </div>
       </div>
@@ -644,7 +644,7 @@
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(19);
     doc.setFont('helvetica', 'bold');
-    doc.text('Calculadora de Valor de Imovel', mg, 19);
+    doc.text('Calculadora de Valor de Imóvel', mg, 19);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(180, 220, 200);
@@ -679,13 +679,13 @@
       y += 16;
     }
 
-    // Morada do imovel
+    // Morada do imóvel
     if (r.moradaImovel) {
       doc.setFillColor(255, 255, 255);
       doc.setFontSize(8.5);
       doc.setTextColor(120, 118, 114);
       doc.setFont('helvetica', 'normal');
-      doc.text('Imovel:', mg + 3, y + 5);
+      doc.text('Imóvel:', mg + 3, y + 5);
       doc.setTextColor(26, 25, 22);
       doc.setFont('helvetica', 'bold');
       doc.text(r.moradaImovel, mg + 16, y + 5);
@@ -742,7 +742,7 @@
     y = sTitle('VALOR DE MERCADO', y);
     y = dataRow('Valor por metro quadrado', fmt(r.pricePerSqm, 0) + ' EUR/m2', y, false);
     y += 3;
-    y = featRow('VALOR ESTIMADO DO IMOVEL', fmtEur(r.valor), y, [44, 95, 74]);
+    y = featRow('VALOR ESTIMADO DO IMÓVEL', fmtEur(r.valor), y, [44, 95, 74]);
     y += 8;
 
     // COMISSAO
@@ -776,7 +776,7 @@
     doc.setFont('helvetica', 'normal');
     doc.text('Emitido em ' + today, W / 2, 284, { align: 'center' });
 
-    doc.save('valor-imovel-' + new Date().toISOString().slice(0, 10) + '.pdf');
+    doc.save('valor-imóvel-' + new Date().toISOString().slice(0, 10) + '.pdf');
   }
 
   document.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
