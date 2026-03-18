@@ -389,6 +389,12 @@
         </div>
       </div>
     </div>
+    <div class="field" style="margin-top:14px;">
+      <label>Morada do Imovel</label>
+      <div class="input-wrap">
+        <input type="text" id="moradaImovel" placeholder="Rua, numero, freguesia, concelho" />
+      </div>
+    </div>
   </div>
 
   <!-- Card 1: Areas -->
@@ -542,6 +548,7 @@
 
   function calculate() {
     const nomeCliente   = document.getElementById('nomeCliente').value.trim();
+    const moradaImovel  = document.getElementById('moradaImovel').value.trim();
     const nomeConsultor = document.getElementById('nomeConsultor').value.trim();
     const privativa   = parseFloat(document.getElementById('privativa').value);
     const dependente  = parseFloat(document.getElementById('dependente').value);
@@ -568,7 +575,7 @@
     const comTotal   = comBase + comIva;
     const liquido    = valor - comTotal;
 
-    lastResult = { nomeCliente, nomeConsultor, privativa, dep, depPond, totalPond, pricePerSqm, valor, hasComis, comissaoPct, comBase, comIva, comTotal, liquido };
+    lastResult = { nomeCliente, nomeConsultor, moradaImovel, privativa, dep, depPond, totalPond, pricePerSqm, valor, hasComis, comissaoPct, comBase, comIva, comTotal, liquido };
 
     // Fill tiles
     document.getElementById('r-priv').innerHTML       = fmt(privativa) + '<span class="u">m²</span>';
@@ -610,7 +617,7 @@
   }
 
   function resetCalc() {
-    ['nomeCliente', 'nomeConsultor', 'privativa', 'dependente', 'pricePerSqm', 'comissao'].forEach(id => {
+    ['nomeCliente', 'nomeConsultor', 'moradaImovel', 'privativa', 'dependente', 'pricePerSqm', 'comissao'].forEach(id => {
       document.getElementById(id).value = '';
     });
     const wrap = document.getElementById('resultsWrap');
@@ -670,6 +677,19 @@
         doc.text(r.nomeConsultor, W / 2 + 24, y + 6.5);
       }
       y += 16;
+    }
+
+    // Morada do imovel
+    if (r.moradaImovel) {
+      doc.setFillColor(255, 255, 255);
+      doc.setFontSize(8.5);
+      doc.setTextColor(120, 118, 114);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Imovel:', mg + 3, y + 5);
+      doc.setTextColor(26, 25, 22);
+      doc.setFont('helvetica', 'bold');
+      doc.text(r.moradaImovel, mg + 16, y + 5);
+      y += 10;
     }
 
     // Section helper
